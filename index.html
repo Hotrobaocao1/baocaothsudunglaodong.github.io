@@ -110,23 +110,10 @@
                         <i class="fa-solid fa-comments"></i>
                         <span>Tham gia nhóm Zalo</span>
                     </a>
-                                        <div class="relative" id="chucNangWrap">
-                        <button type="button" onclick="toggleChucNangMenu(event)" id="chucNangBtn" class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-800 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="Chức Năng" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa-solid fa-folder text-yellow-400"></i>
-                            <span>Chức Năng</span>
-                            <i class="fa-solid fa-chevron-down text-[10px] transition-transform" id="chucNangChevron"></i>
-                        </button>
-                        <div id="chucNangMenu" class="hidden absolute left-0 md:right-0 md:left-auto mt-2 w-72 bg-white text-slate-800 rounded-xl shadow-2xl border border-slate-200 overflow-hidden z-40">
-                            <a href="https://www.youtube.com/watch?v=sRsXtT9LSJA&t=52s" target="_blank" rel="noopener noreferrer" onclick="closeChucNangMenu()" class="flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-rose-50 transition" title="Xem Video hướng dẫn">
-                                <i class="fa-brands fa-youtube text-rose-600 text-base w-5 text-center"></i>
-                                <span>Video hướng dẫn</span>
-                            </a>
-                            <button type="button" onclick="closeChucNangMenu(); openGuideModal();" class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-amber-50 transition border-t border-slate-100 text-left" title="Xem cách nộp báo cáo tình hình sử dụng lao động">
-                                <i class="fa-solid fa-file-signature text-amber-500 text-base w-5 text-center"></i>
-                                <span>Cách nộp báo cáo sử dụng lao động</span>
-                            </button>
-                        </div>
-                    </div>
+                    <button type="button" onclick="openFaqModal()" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="Hỏi đáp báo cáo tình hình lao động 2026">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span>Hỏi đáp báo cáo tình hình lao động 2026</span>
+                    </button>
                     <div class="relative" id="sanPhamWrap">
                         <button type="button" onclick="toggleSanPhamMenu(event)" id="sanPhamBtn" class="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-600 hover:to-rose-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg ring-1 ring-white/30 transition duration-200 active:scale-95" title="Sản phẩm dịch vụ" aria-haspopup="true" aria-expanded="false">
                             <i class="fa-solid fa-bag-shopping text-white"></i>
@@ -242,164 +229,73 @@
         </div>
     </div>
 
-    <!-- Modal Hướng dẫn nộp báo cáo tình hình sử dụng lao động -->
-    <div id="guideModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200 transform transition-all my-8">
+    <!-- Modal Hỏi đáp báo cáo tình hình lao động 2026 -->
+    <div id="faqModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full overflow-hidden border border-slate-200 transform transition-all my-8">
             <!-- Header Modal -->
             <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-950 px-6 py-4 flex items-center justify-between text-white border-b-2 border-yellow-500">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-yellow-300 flex items-center justify-center text-xl flex-shrink-0 border border-yellow-400/30">
-                        <i class="fa-solid fa-file-signature"></i>
+                        <i class="fa-solid fa-circle-question"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-base sm:text-lg">Hướng Dẫn Nộp Báo Cáo Tình Hình Sử Dụng Lao Động</h3>
+                        <h3 class="font-bold text-base sm:text-lg">Hỏi đáp báo cáo tình hình sử dụng lao động năm 2026</h3>
                         <p class="text-xs text-amber-300 font-semibold flex items-center gap-1 mt-0.5">
-                            <i class="fa-regular fa-clock"></i> Thời hạn nộp: Trước ngày 05/12/2026
+                            <i class="fa-regular fa-clock"></i> Mẫu số 01/PLI, Nghị định số 145/2020/NĐ-CP · Hạn nộp: hết ngày 05/12/2026
                         </p>
                     </div>
                 </div>
-                <button onclick="closeGuideModal()" class="text-slate-300 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition">
+                <button onclick="closeFaqModal()" class="text-slate-300 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition" aria-label="Đóng">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
 
-            <!-- Nội dung chi tiết các bước -->
-            <div class="p-6 space-y-4 max-h-[75vh] overflow-y-auto text-sm text-slate-700">
-
-                <!-- Địa chỉ truy cập mới -->
-                <div class="p-3.5 bg-blue-50 border border-blue-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <div class="flex items-center gap-2">
-                        <span class="text-rose-600 text-base">👉</span>
-                        <span class="font-bold text-slate-800">Địa chỉ truy cập mới:</span>
-                    </div>
-                    <a href="https://vpcp.dichvucong.gov.vn/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-blue-700 hover:text-blue-900 font-bold bg-white px-3 py-1.5 rounded-lg border border-blue-300 shadow-2xs hover:bg-blue-50 transition text-xs sm:text-sm">
-                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> https://vpcp.dichvucong.gov.vn/
-                    </a>
+            <!-- Thông tin nhanh -->
+            <div class="px-4 pt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                <div class="rounded-xl border border-blue-100 bg-blue-50 px-3 py-2.5">
+                    <div class="font-bold text-blue-800 flex items-center gap-1.5"><i class="fa-solid fa-location-dot"></i> Nộp ở đâu</div>
+                    <div class="mt-1 text-slate-700">Cổng thông tin việc làm thành phố Hà Nội: <a href="https://congvieclam.hanoi.gov.vn" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-700 underline">congvieclam.hanoi.gov.vn</a></div>
                 </div>
-
-                <!-- 6 Bước thực hiện -->
-                <div class="space-y-3.5 pt-1">
-                    <!-- Bước 1 -->
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-slate-50 border border-slate-100 hover:border-blue-200 transition">
-                        <span class="w-7 h-7 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-sm">1</span>
-                        <div class="flex-1">
-                            <h4 class="font-bold text-blue-900 text-sm">BƯỚC 1: Truy cập Cổng Dịch vụ công Quốc gia</h4>
-                            <p class="text-slate-600 mt-1 leading-relaxed">
-                                Truy cập Cổng Dịch vụ công Quốc gia theo đường link mới: 
-                                <a href="https://vpcp.dichvucong.gov.vn/" target="_blank" class="text-blue-600 font-semibold underline break-all">https://vpcp.dichvucong.gov.vn/</a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Bước 2 -->
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-slate-50 border border-slate-100 hover:border-blue-200 transition">
-                        <span class="w-7 h-7 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-sm">2</span>
-                        <div class="flex-1">
-                            <h4 class="font-bold text-blue-900 text-sm">BƯỚC 2: Đăng nhập bằng USB Token</h4>
-                            <p class="text-slate-600 mt-1 leading-relaxed">
-                                Sử dụng <strong>Chữ ký số USB Token</strong> để đăng nhập tài khoản doanh nghiệp. Trường hợp chưa có tài khoản, thực hiện đăng ký mới theo hướng dẫn trên hệ thống.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Bước 3 -->
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-slate-50 border border-slate-100 hover:border-blue-200 transition">
-                        <span class="w-7 h-7 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-sm">3</span>
-                        <div class="flex-1">
-                            <h4 class="font-bold text-blue-900 text-sm">BƯỚC 3: Mở tab dịch vụ liên thông BHXH</h4>
-                            <p class="text-slate-600 mt-1 leading-relaxed">
-                                Sau khi đăng nhập thành công, mở thêm một tab mới trên cùng trình duyệt và truy cập:
-                                <br>
-                                <a href="https://vpcp.dichvucong.gov.vn/" target="_blank" class="inline-block mt-1 text-blue-600 font-medium underline break-all">
-                                    https://vpcp.dichvucong.gov.vn/.../dvc-lien-thong-bhxh...
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Bước 4 -->
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-slate-50 border border-slate-100 hover:border-blue-200 transition">
-                        <span class="w-7 h-7 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-sm">4</span>
-                        <div class="flex-1">
-                            <h4 class="font-bold text-blue-900 text-sm">BƯỚC 4: Kê khai thông tin cơ quan nhận báo cáo</h4>
-                            <p class="text-slate-600 mt-1 leading-relaxed">
-                                Thực hiện kê khai thông tin: Chọn cơ quan nhận báo cáo là <strong>Sở Nội vụ</strong> nơi đặt trụ sở, chi nhánh hoặc văn phòng đại diện. Nhập chính xác mã đơn vị và mã cơ quan BHXH tương ứng.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Bước 5 -->
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-slate-50 border border-slate-100 hover:border-blue-200 transition">
-                        <span class="w-7 h-7 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-sm">5</span>
-                        <div class="flex-1">
-                            <h4 class="font-bold text-blue-900 text-sm">BƯỚC 5: Đăng ký ghi nhận thông tin</h4>
-                            <p class="text-slate-600 mt-1 leading-relaxed">
-                                Nhấn nút <strong class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">"Đăng ký"</strong>, hệ thống sẽ tự động đồng bộ và ghi nhận thông tin nộp báo cáo.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Bước 6 -->
-                    <div class="flex gap-3 items-start p-3 rounded-xl bg-slate-50 border border-slate-100 hover:border-blue-200 transition">
-                        <span class="w-7 h-7 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-sm">6</span>
-                        <div class="flex-1">
-                            <h4 class="font-bold text-blue-900 text-sm">BƯỚC 6: Hoàn tất thủ tục</h4>
-                            <p class="text-slate-600 mt-1 leading-relaxed">
-                                Khi xuất hiện thông báo: <em class="text-emerald-800 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded">"Chúc mừng doanh nghiệp đã cập nhật thông tin cơ quan nhận báo cáo lao động thành công"</em> → Nhấn <strong>"Thoát"</strong> để hoàn tất.
-                            </p>
-                        </div>
-                    </div>
+                <div class="rounded-xl border border-rose-100 bg-rose-50 px-3 py-2.5">
+                    <div class="font-bold text-rose-700 flex items-center gap-1.5"><i class="fa-regular fa-calendar-xmark"></i> Hạn nộp</div>
+                    <div class="mt-1 text-slate-700">Đến hết ngày <strong>05/12/2026</strong>, sau 24h00 hệ thống tự động khóa</div>
                 </div>
-
-                <!-- Video Hướng Dẫn -->
-                <div class="p-3.5 bg-rose-50 border border-rose-200 rounded-xl flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-2.5">
-                        <i class="fa-brands fa-youtube text-rose-600 text-2xl"></i>
-                        <div>
-                            <div class="font-bold text-slate-900 text-xs sm:text-sm">Video hướng dẫn thao tác chi tiết:</div>
-                            <div class="text-[11px] text-slate-500">Xem video từng bước thực tế trên YouTube</div>
-                        </div>
-                    </div>
-                    <a href="https://www.youtube.com/watch?v=sRsXtT9LSJA&t=52s" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg font-semibold text-xs transition flex items-center gap-1.5 flex-shrink-0 shadow-sm">
-                        <i class="fa-solid fa-play text-[10px]"></i> Xem ngay
-                    </a>
-                </div>
-
-                <!-- Lưu ý quan trọng -->
-                <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 space-y-1.5 leading-relaxed">
-                    <div class="font-bold text-amber-800 flex items-center gap-1.5 text-sm">
-                        <i class="fa-solid fa-circle-exclamation text-amber-600"></i> Lưu ý quan trọng:
-                    </div>
-                    <p>
-                        Cổng Dịch vụ công Quốc gia lấy dữ liệu lao động từ hệ thống cơ sở dữ liệu của Bảo hiểm xã hội. Do đó doanh nghiệp cần rà soát và cập nhật thông tin lao động trên hệ thống BHXH để đảm bảo dữ liệu được đồng bộ chính xác.
-                    </p>
-                    <div class="pt-1 font-medium text-slate-700">
-                        👉 <em>Ngoài nộp online ra quý anh chị có thể nộp bản cứng về Sở Nội vụ của các tỉnh thành theo địa chỉ tra cứu trên hệ thống này.</em>
-                    </div>
-                </div>
-
-                <!-- Hỗ trợ liên hệ & Zalo -->
-                <div class="p-3 bg-blue-50 rounded-xl border border-blue-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
-                    <div class="flex items-center gap-2">
-                        <span class="font-semibold text-slate-800">Cần hỗ trợ CKS, HĐĐT hoặc nộp báo cáo:</span>
-                        <a href="tel:0904594883" class="font-bold text-blue-700 hover:underline flex items-center gap-1">
-                            <i class="fa-solid fa-phone-volume text-emerald-600"></i> 0904 594 883
-                        </a>
-                    </div>
-                    <a href="https://zalo.me/g/ktyidfoez4r4w4s4scjm" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-blue-700 font-bold hover:underline">
-                        <i class="fa-solid fa-comments text-blue-600"></i> Tham gia Nhóm Zalo Hỗ Trợ
-                    </a>
+                <div class="rounded-xl border border-emerald-100 bg-emerald-50 px-3 py-2.5">
+                    <div class="font-bold text-emerald-700 flex items-center gap-1.5"><i class="fa-solid fa-headset"></i> Hỗ trợ</div>
+                    <div class="mt-1 text-slate-700">Nhóm Zalo “Hỗ trợ Báo cáo tình hình sử dụng lao động”: <a href="https://zalo.me/g/ktyidfoez4r4w4s4scjm" target="_blank" rel="noopener noreferrer" class="font-semibold text-emerald-700 underline">vào nhóm</a></div>
                 </div>
             </div>
 
+            <!-- Tìm kiếm -->
+            <div class="p-4 pb-2">
+                <div class="relative">
+                    <input type="text" id="faqSearchInput" oninput="onFaqSearch()" placeholder="Gõ câu hỏi hoặc từ khóa (VD: hộ kinh doanh, mã số thuế, thử việc, hạn nộp, xử phạt...)"
+                        class="w-full pl-9 pr-9 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-100 outline-none" autocomplete="off">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-3.5 text-slate-400 text-xs"></i>
+                    <button type="button" id="faqClearBtn" onclick="clearFaqSearch()" class="hidden absolute right-2 top-2 w-7 h-7 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition" aria-label="Xóa từ khóa">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div id="faqChips" class="mt-3 flex flex-wrap gap-1.5"></div>
+                <div class="mt-3 flex items-center justify-between gap-2">
+                    <span id="faqCount" class="text-xs text-slate-500 font-medium"></span>
+                    <button type="button" id="faqToggleAll" onclick="toggleFaqAll()" class="text-xs font-semibold text-blue-700 hover:text-blue-900 flex items-center gap-1">
+                        <i class="fa-solid fa-angles-down"></i> <span>Mở tất cả</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Danh sách hỏi đáp -->
+            <div class="px-4 pb-4 max-h-[55vh] overflow-y-auto space-y-2" id="faqList"></div>
+
             <!-- Footer Modal -->
             <div class="bg-slate-50 px-6 py-3 border-t border-slate-200 flex flex-wrap justify-between items-center gap-2">
-                <span class="text-xs text-slate-500 font-medium">Đức Tùng CKS - HĐĐT: 0904 594 883</span>
+                <span class="text-xs text-slate-500 font-medium">Đức Tùng CKS - HĐĐT: <strong>0904 594 883</strong></span>
                 <div class="flex items-center gap-2">
-                    <a href="https://vpcp.dichvucong.gov.vn/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Cổng DVC mới
+                    <a href="https://zalo.me/g/ktyidfoez4r4w4s4scjm" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
+                        <i class="fa-solid fa-comments"></i> Nhóm Zalo hỗ trợ
                     </a>
-                    <button onclick="closeGuideModal()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-semibold transition">
+                    <button onclick="closeFaqModal()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-semibold transition">
                         Đóng
                     </button>
                 </div>
@@ -1752,28 +1648,6 @@
             }, 2500);
         }
 
-        // ====== Menu "Chức Năng" ======
-        function toggleChucNangMenu(e) {
-            if (e) e.stopPropagation();
-            if (typeof closeSanPhamMenu === 'function') closeSanPhamMenu();
-            const m = document.getElementById('chucNangMenu');
-            const open = m.classList.toggle('hidden') === false;
-            document.getElementById('chucNangBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
-            document.getElementById('chucNangChevron').style.transform = open ? 'rotate(180deg)' : '';
-        }
-        function closeChucNangMenu() {
-            const m = document.getElementById('chucNangMenu');
-            if (!m) return;
-            m.classList.add('hidden');
-            document.getElementById('chucNangBtn').setAttribute('aria-expanded', 'false');
-            document.getElementById('chucNangChevron').style.transform = '';
-        }
-        document.addEventListener('click', function(e) {
-            const w = document.getElementById('chucNangWrap');
-            if (w && !w.contains(e.target)) closeChucNangMenu();
-        });
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeChucNangMenu(); });
-
         // ====== Menu "Sản phẩm dịch vụ" ======
         // Điền link vào đây nếu muốn mở trang riêng cho từng sản phẩm. Để "" thì hiện thông báo liên hệ hotline.
         const SAN_PHAM_LINKS = {
@@ -1786,7 +1660,6 @@
         };
         function toggleSanPhamMenu(e) {
             if (e) e.stopPropagation();
-            closeChucNangMenu();
             const m = document.getElementById('sanPhamMenu');
             const open = m.classList.toggle('hidden') === false;
             document.getElementById('sanPhamBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -1811,10 +1684,6 @@
         });
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSanPhamMenu(); });
 
-        function openGuideModal() {
-            document.getElementById('guideModal').classList.remove('hidden');
-        }
-
         function openHuongDanNopModal() {
             document.getElementById('huongDanNopModal').classList.remove('hidden');
         }
@@ -1823,13 +1692,9 @@
         }
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeHuongDanNopModal(); });
 
-        function closeGuideModal() {
-            document.getElementById('guideModal').classList.add('hidden');
-        }
-
         window.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                closeGuideModal();
+                closeFaqModal();
                 closeCongVanModal();
                 closeLinkNopModal();
                 closeEditLinkPopup();
@@ -1837,9 +1702,6 @@
             }
         });
 
-        document.getElementById('guideModal')?.addEventListener('click', function(e) {
-            if (e.target === this) closeGuideModal();
-        });
         document.getElementById('congVanModal')?.addEventListener('click', function(e) {
             if (e.target === this) closeCongVanModal();
         });
@@ -1851,6 +1713,306 @@
         });
         document.getElementById('editLinkCustomModal')?.addEventListener('click', function(e) {
             if (e.target === this) closeEditLinkPopup();
+        });
+
+        // ====== Hỏi đáp báo cáo tình hình lao động 2026 ======
+        const FAQ_CATS = {
+            A: 'Đơn vị nào phải báo cáo',
+            B: 'Tính ai vào số lao động',
+            C: 'Cách điền các cột dễ sai',
+            D: 'Tài khoản, nộp và sửa báo cáo',
+            E: 'Thời hạn và xử phạt'
+        };
+        const FAQ_INTRO = {
+            A: 'Nguyên tắc chung: có thuê mướn, sử dụng người lao động theo hợp đồng lao động trên địa bàn Hà Nội thì phải báo cáo, không phân biệt quy mô hay loại hình.',
+            B: 'Nguyên tắc chung: đơn vị nào ký hợp đồng lao động với người lao động thì đơn vị đó kê khai người đó.'
+        };
+        function faqUl(items) { return '<ul class="list-disc pl-5 space-y-1">' + items.map(function(x) { return '<li>' + x + '</li>'; }).join('') + '</ul>'; }
+        function faqTable(head, rows, statusCol) {
+            var h = '<div class="overflow-x-auto my-2"><table class="w-full text-xs sm:text-sm border border-slate-200 rounded-lg overflow-hidden"><thead class="bg-slate-100 text-slate-700"><tr>' +
+                head.map(function(x) { return '<th class="text-left font-bold px-3 py-2 border-b border-slate-200">' + x + '</th>'; }).join('') + '</tr></thead><tbody>';
+            rows.forEach(function(r) {
+                h += '<tr class="border-b border-slate-100 last:border-0">';
+                r.forEach(function(c, i) {
+                    var cls = 'px-3 py-2 align-top';
+                    if (i === 0) cls += ' font-semibold text-slate-800';
+                    if (statusCol && i === 1) {
+                        cls += c.indexOf('Không') === 0 ? ' text-rose-700 font-semibold' : (c.indexOf('Chưa') === 0 ? ' text-amber-700 font-semibold' : ' text-emerald-700 font-semibold');
+                    }
+                    h += '<td class="' + cls + '">' + c + '</td>';
+                });
+                h += '</tr>';
+            });
+            return h + '</tbody></table></div>';
+        }
+        const FAQ_ITEMS = [
+            // ===== A. Đơn vị nào phải báo cáo =====
+            { cat: 'A', no: '1', q: 'Công ty tôi chỉ có 1–2 lao động, có phải báo cáo không?',
+              a: '<strong>Có.</strong> Chỉ cần có 1 người lao động làm việc theo hợp đồng lao động là đơn vị thuộc đối tượng báo cáo.' },
+            { cat: 'A', no: '2', q: 'Hộ kinh doanh có phải báo cáo không? Không có con dấu thì sao?',
+              a: '<strong>Có</strong>, nếu hộ có thuê người lao động theo hợp đồng lao động. Chủ hộ ký tên vào báo cáo, không cần đóng dấu. Bản thân chủ hộ và người nhà cùng làm nhưng không ký hợp đồng lao động thì không tính.' },
+            { cat: 'A', no: '3', q: 'Doanh nghiệp mới thành lập trong năm 2026 có phải báo cáo không?',
+              a: '<strong>Có</strong>, nếu đã tuyển dụng, ký hợp đồng lao động với người lao động.' },
+            { cat: 'A', no: '4', q: 'Trong năm số lao động không thay đổi, có cần báo cáo không?',
+              a: '<strong>Vẫn phải báo cáo.</strong> Báo cáo là định kỳ, đơn vị kê khai đúng tình hình lao động hiện có.' },
+            { cat: 'A', no: '5', q: 'Cơ quan nhà nước, đơn vị sự nghiệp công lập có phải báo cáo không?',
+              a: '<strong>Có</strong>, nhưng chỉ kê khai người làm việc theo hợp đồng lao động. Cán bộ, công chức, viên chức không tính vào báo cáo này.' },
+            { cat: 'A', no: '6', q: 'Đơn vị đã báo cáo qua Cổng Dịch vụ công Quốc gia, có cần nộp lại không?',
+              a: 'Đề nghị đơn vị cập nhật thêm trên Cổng thông tin việc làm thành phố Hà Nội, để Sở Nội vụ có số liệu tổng hợp và hỗ trợ đơn vị.' },
+            { cat: 'A', no: '7', q: 'Doanh nghiệp đang tạm ngừng kinh doanh, không còn lao động thì sao?',
+              a: 'Trong năm có sử dụng lao động thì vẫn báo cáo, ghi rõ tình trạng tạm ngừng và thời điểm người lao động nghỉ việc vào cột Ghi chú.' },
+            { cat: 'A', no: '7a', q: 'Doanh nghiệp không sử dụng lao động nào thì có phải nộp không?',
+              a: '<p class="mb-1">Phân biệt hai trường hợp:</p>' + faqUl([
+                  '<strong>Có lao động nhưng trong năm không tăng, giảm:</strong> vẫn nộp báo cáo, kê khai số lao động hiện có (xem câu 4).',
+                  '<strong>Không có người lao động nào làm việc theo hợp đồng lao động:</strong> đề nghị đơn vị vẫn đăng nhập Cổng và xác nhận đơn vị không có lao động, không phải nhập danh sách. Việc này giúp Sở Nội vụ phân biệt đơn vị không sử dụng lao động với đơn vị chưa nộp báo cáo.'
+              ]) },
+
+            // ===== B. Tính ai vào số lao động =====
+            { cat: 'B', no: 'Bảng', q: 'Bảng tra cứu: trường hợp nào có tính vào báo cáo?',
+              a: faqTable(['Trường hợp', 'Có tính vào báo cáo không'], [
+                  ['Lao động có hợp đồng lao động, kể cả hợp đồng ngắn hạn', 'Có'],
+                  ['Người lao động nước ngoài làm việc theo hợp đồng lao động', 'Có'],
+                  ['Người đã nghỉ hưu, được thuê làm tiếp theo hợp đồng lao động', 'Có (ghi chú nếu không đóng BHXH)'],
+                  ['Người đang nghỉ thai sản, ốm dài ngày, hợp đồng đang tạm hoãn', 'Có, vì hợp đồng vẫn còn hiệu lực'],
+                  ['Người đang thử việc, thử việc ghi ngay trong hợp đồng lao động', 'Có'],
+                  ['Người đang thử việc theo hợp đồng thử việc', 'Chưa tính'],
+                  ['Cộng tác viên, hợp đồng dịch vụ, khoán việc (không có quản lý, điều hành, trả lương)', 'Không'],
+                  ['Lao động thuê lại từ doanh nghiệp cho thuê lại lao động', 'Không (doanh nghiệp cho thuê lại kê khai)'],
+                  ['Chủ doanh nghiệp tư nhân, chủ hộ kinh doanh', 'Không'],
+                  ['Cán bộ, công chức, viên chức', 'Không']
+              ], true) },
+            { cat: 'B', no: '8', q: 'Giám đốc công ty có tính vào số lao động không?',
+              a: '<strong>Có</strong>, nếu giám đốc ký hợp đồng lao động với công ty và hưởng lương. <strong>Không tính</strong> nếu chỉ là chủ sở hữu, không có hợp đồng lao động.' },
+            { cat: 'B', no: '9', q: 'Người nghỉ việc trong năm có kê khai không?',
+              a: 'Kê khai và ghi ngày kết thúc hợp đồng, ngày kết thúc đóng BHXH, để thể hiện đúng tình hình thay đổi lao động trong kỳ.' },
+            { cat: 'B', no: '10', q: 'Số lao động tính đến thời điểm nào?',
+              a: 'Tính đến thời điểm đơn vị lập báo cáo.' },
+
+            // ===== C. Cách điền các cột dễ sai =====
+            { cat: 'C', no: '11', q: 'Mã số thuế ghi thế nào?',
+              a: 'Ghi đủ <strong>10 số</strong> (doanh nghiệp) hoặc <strong>13 số</strong> (chi nhánh, đơn vị phụ thuộc), chỉ gồm chữ số, không dấu cách. Mã số thuế sai là lỗi phổ biến nhất ở kỳ báo cáo 6 tháng.' },
+            { cat: 'C', no: '12', q: 'Vị trí việc làm chia thế nào?',
+              a: '<p class="mb-1">Mỗi người chỉ thuộc một trong bốn nhóm:</p>' + faqTable(['Nhóm', 'Ví dụ'], [
+                  ['Nhà quản lý', 'Giám đốc, phó giám đốc, kế toán trưởng, trưởng phòng, quản đốc'],
+                  ['Chuyên môn kỹ thuật bậc cao', 'Kỹ sư, bác sĩ, giáo viên, lập trình viên, chuyên viên có trình độ đại học trở lên làm đúng chuyên môn'],
+                  ['Chuyên môn kỹ thuật bậc trung', 'Kỹ thuật viên, y tá, kế toán viên, nhân viên văn phòng có trình độ cao đẳng, trung cấp'],
+                  ['Khác', 'Công nhân sản xuất, lái xe, bảo vệ, tạp vụ, bán hàng, phục vụ']
+              ], false) + '<p>Xếp theo công việc người đó đang làm, không theo bằng cấp. Ví dụ: người có bằng đại học nhưng làm công nhân đóng gói thì xếp nhóm “Khác”.</p>' },
+            { cat: 'C', no: '13', q: 'Nhập từng người lao động trên Cổng thế nào cho nhanh, đúng?',
+              a: faqUl([
+                  'Cổng yêu cầu nhập từng người lao động, mỗi người một dòng. Đơn vị nên chuẩn bị trước danh sách (Excel) theo các cột của Mẫu số 01/PLI rồi mới nhập.',
+                  'Nhập đủ họ tên, mã số BHXH, ngày sinh, số định danh cá nhân (CCCD) theo đúng giấy tờ; không nhập trùng một người hai lần.',
+                  'Mỗi người chỉ chọn một vị trí việc làm và một loại hợp đồng.',
+                  'Ngày tháng nhập theo dạng ngày/tháng/năm, ví dụ 15/03/2021.',
+                  'Ô mức lương, phụ cấp chỉ nhập số, không nhập chữ hay đơn vị (viết “8500000”, không viết “8,5 triệu”).',
+                  'Nhập xong, đối chiếu số người trên Cổng với tổng số lao động của đơn vị trước khi bấm “Lưu và nộp”.'
+              ]) },
+            { cat: 'C', no: '14', q: 'Loại hợp đồng ghi thế nào?',
+              a: faqUl([
+                  '<strong>Hợp đồng không xác định thời hạn:</strong> ghi ngày bắt đầu.',
+                  '<strong>Hợp đồng xác định thời hạn</strong> (tối đa 36 tháng): ghi ngày bắt đầu và ngày kết thúc.',
+                  '<strong>Hợp đồng khác:</strong> các hợp đồng không thuộc hai loại trên, ghi ngày bắt đầu và kết thúc.'
+              ]) + '<p class="mt-2">Hợp đồng đã ký phụ lục gia hạn thì ghi theo thời hạn mới nhất.</p>' },
+            { cat: 'C', no: '15', q: 'Cột “Thời điểm đơn vị bắt đầu đóng BHXH” ghi ngày nào: 01/7 hay 01/01/2026?',
+              a: '<strong>Không ghi mốc kỳ báo cáo.</strong> Ghi ngày thực tế đơn vị bắt đầu đóng BHXH cho từng người, theo hồ sơ BHXH của người đó. Ví dụ: đóng từ 15/3/2021 thì ghi 15/03/2021.' },
+            { cat: 'C', no: '16', q: 'Cột “Thời điểm kết thúc đóng BHXH” để trống được không?',
+              a: 'Người vẫn đang đóng thì để trống. Người đã nghỉ việc hoặc dừng đóng thì ghi ngày dừng đóng.' },
+            { cat: 'C', no: '17', q: 'Người không thuộc diện đóng BHXH thì ghi sao?',
+              a: 'Để trống hai cột BHXH và ghi lý do vào cột Ghi chú. Ví dụ: hợp đồng dưới 1 tháng, người đang hưởng lương hưu.' },
+            { cat: 'C', no: '18', q: 'Tiền lương ghi lương thực nhận hay lương trong hợp đồng?',
+              a: 'Ghi mức lương theo hợp đồng lao động và các khoản phụ cấp vào đúng cột tương ứng, <strong>không ghi tổng thu nhập thực nhận</strong>.' },
+            { cat: 'C', no: '19', q: 'Nghề nặng nhọc, độc hại xác định thế nào?',
+              a: 'Theo Danh mục nghề, công việc nặng nhọc, độc hại, nguy hiểm tại Thông tư số 11/2020/TT-BLĐTBXH. Chỉ ghi khi công việc của người đó có trong danh mục, kèm ngày bắt đầu và kết thúc (nếu có). Không có thì để trống.' },
+
+            // ===== D. Tài khoản, nộp và sửa báo cáo =====
+            { cat: 'D', no: '20', q: 'Đăng ký tài khoản báo lỗi mã số thuế đã tồn tại?',
+              a: 'Mỗi mã số thuế chỉ có một tài khoản. Có thể đơn vị (hoặc người phụ trách trước) đã đăng ký rồi. Gửi tên đơn vị và mã số thuế vào <a href="https://zalo.me/g/ktyidfoez4r4w4s4scjm" target="_blank" rel="noopener noreferrer" class="text-blue-700 font-semibold underline">nhóm Zalo hỗ trợ</a> để bộ phận kỹ thuật xử lý.' },
+            { cat: 'D', no: '21', q: 'Quên mật khẩu hoặc người cũ đã nghỉ, không ai biết tài khoản?',
+              a: 'Dùng chức năng lấy lại mật khẩu trên Cổng. Không lấy lại được thì báo vào <a href="https://zalo.me/g/ktyidfoez4r4w4s4scjm" target="_blank" rel="noopener noreferrer" class="text-blue-700 font-semibold underline">nhóm Zalo hỗ trợ</a>.' },
+            { cat: 'D', no: '22', q: 'File đính kèm là gì?',
+              a: 'Bản báo cáo Mẫu số 01/PLI định dạng .pdf, có chữ ký số hợp lệ hoặc bản quét (scan) từ bản chính có chữ ký, đóng dấu (nếu có). Không có chữ ký số thì in ra, ký, đóng dấu rồi scan.' },
+            { cat: 'D', no: '23', q: 'Làm sao biết đã nộp thành công?',
+              a: 'Sau khi bấm “Lưu và nộp”, báo cáo hiển thị trong tài khoản của đơn vị trên Cổng là đã nộp thành công. Đơn vị chụp ảnh màn hình này để lưu làm căn cứ.' },
+            { cat: 'D', no: '24', q: 'Không nhận được thư điện tử xác nhận, có phải nộp lại không?',
+              a: '<strong>Không.</strong> Thư điện tử chỉ là thông báo, có thể đến chậm hoặc không đến khi hệ thống đông. Căn cứ đã nộp là báo cáo hiển thị trên Cổng.' },
+            { cat: 'D', no: '25', q: 'Đã nộp trên Cổng, có cần mang bản giấy đến Sở không?',
+              a: '<strong>Không.</strong> Báo cáo đã hiển thị trên Cổng là hoàn thành, đơn vị không phải gửi thêm bản giấy.' },
+            { cat: 'D', no: '26', q: 'Nộp xong mới phát hiện sai số liệu?',
+              a: 'Trước khi hết hạn, bấm “Sửa”, cập nhật và bấm “Lưu” lại. Hệ thống ghi nhận bản nộp sau cùng, không cần tạo báo cáo mới.' },
+            { cat: 'D', no: '27', q: 'Không thể nộp trực tuyến thì làm sao?',
+              a: 'Trước hết báo vào <a href="https://zalo.me/g/ktyidfoez4r4w4s4scjm" target="_blank" rel="noopener noreferrer" class="text-blue-700 font-semibold underline">nhóm Zalo</a> để được hỗ trợ. Nếu đã được hỗ trợ mà vẫn không nộp được do lỗi hệ thống, gửi bản giấy Mẫu số 01/PLI qua bưu điện về Sở Nội vụ thành phố Hà Nội (Phòng Việc làm và An toàn lao động), số 62 Trần Quốc Toản, phường Cửa Nam, Hà Nội. Giữ biên lai bưu điện làm căn cứ, không cần đến Sở.' },
+
+            // ===== E. Thời hạn và xử phạt =====
+            { cat: 'E', no: '28', q: 'Hạn chót là khi nào?',
+              a: 'Đến hết ngày <strong>05/12/2026</strong>. Sau 24h00 ngày 05/12/2026, Cổng tự động khóa chức năng tiếp nhận. Bản giấy gửi bưu điện tính theo ngày trên dấu bưu điện nơi gửi.' },
+            { cat: 'E', no: '29', q: 'Vì sao nên nộp sớm?',
+              a: 'Ở kỳ báo cáo 6 tháng, hơn 60% đơn vị dồn nộp vào 3 ngày cuối, gây nghẽn hệ thống. Đơn vị chưa có tài khoản nên đăng ký ngay, nộp sớm để còn thời gian sửa nếu sai.' },
+            { cat: 'E', no: '30', q: 'Không báo cáo thì bị xử lý thế nào?',
+              a: 'Theo điểm c khoản 2 Điều 11 Nghị định số 283/2026/NĐ-CP, hành vi không báo cáo tình hình thay đổi về lao động bị phạt tiền từ <strong>5.000.000 đồng đến 10.000.000 đồng</strong>. Danh sách đơn vị chưa báo cáo là cơ sở để cơ quan chức năng xem xét khi thanh tra, kiểm tra.' },
+            { cat: 'E', no: '31', q: 'Báo cáo này dùng để làm gì?',
+              a: 'Báo cáo là nghĩa vụ của người sử dụng lao động theo Bộ luật Lao động 2019 và Điều 4 Nghị định số 145/2020/NĐ-CP. Số liệu được Sở Nội vụ tổng hợp báo cáo Bộ Nội vụ, phục vụ quản lý thị trường lao động và xây dựng chính sách việc làm của Thành phố. Điền đúng, đủ giúp đơn vị không phải giải trình, bổ sung về sau.' }
+        ];
+
+        // Chuẩn hóa tiếng Việt không dấu để tìm kiếm (giữ nguyên độ dài chuỗi)
+        function faqNorm(s) {
+            var out = '';
+            for (var i = 0; i < s.length; i++) {
+                var ch = s.charAt(i);
+                var b = ch.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                if (ch === 'đ' || ch === 'Đ') b = 'd';
+                out += (b.length === 1) ? b.toLowerCase() : ch.toLowerCase();
+            }
+            return out;
+        }
+        function faqEsc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+        (function prepFaq() {
+            var tmp = document.createElement('div');
+            FAQ_ITEMS.forEach(function(it) {
+                tmp.innerHTML = it.a;
+                it.hay = faqNorm('cau ' + it.no + ' ' + it.q + ' ' + (tmp.textContent || ''));
+            });
+        })();
+
+        var faqCat = 'ALL';
+        var faqAllOpen = false;
+
+        function faqHighlight(el, words) {
+            if (!words.length) return;
+            var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+            var nodes = [];
+            while (walker.nextNode()) nodes.push(walker.currentNode);
+            nodes.forEach(function(node) {
+                var text = node.nodeValue;
+                var norm = faqNorm(text);
+                if (norm.length !== text.length) return;
+                var marks = new Array(text.length);
+                var any = false;
+                words.forEach(function(w) {
+                    var idx = norm.indexOf(w);
+                    while (idx !== -1) {
+                        for (var k = idx; k < idx + w.length; k++) marks[k] = true;
+                        any = true;
+                        idx = norm.indexOf(w, idx + w.length);
+                    }
+                });
+                if (!any) return;
+                var frag = document.createDocumentFragment();
+                var i = 0;
+                while (i < text.length) {
+                    var j = i;
+                    var on = !!marks[i];
+                    while (j < text.length && !!marks[j] === on) j++;
+                    var piece = text.slice(i, j);
+                    if (on) {
+                        var m = document.createElement('mark');
+                        m.className = 'bg-yellow-200 text-slate-900 rounded px-0.5';
+                        m.textContent = piece;
+                        frag.appendChild(m);
+                    } else {
+                        frag.appendChild(document.createTextNode(piece));
+                    }
+                    i = j;
+                }
+                node.parentNode.replaceChild(frag, node);
+            });
+        }
+
+        function renderFaq() {
+            var qRaw = document.getElementById('faqSearchInput').value;
+            var words = faqNorm(qRaw).split(/\s+/).filter(Boolean);
+            var counts = { ALL: 0 };
+            Object.keys(FAQ_CATS).forEach(function(c) { counts[c] = 0; });
+            var matched = FAQ_ITEMS.map(function(it) {
+                var ok = words.every(function(w) { return it.hay.indexOf(w) !== -1; });
+                if (ok) { counts.ALL++; counts[it.cat]++; }
+                return ok;
+            });
+
+            // Chip lọc nhóm
+            var chips = '';
+            var mk = function(key, label) {
+                var active = faqCat === key;
+                var cls = active ? 'bg-amber-500 text-white border-amber-500' : 'bg-white text-slate-600 border-slate-300 hover:bg-amber-50';
+                return '<button type="button" onclick="setFaqCat(\'' + key + '\')" class="px-2.5 py-1 rounded-full text-xs font-semibold border transition ' + cls + '">' + label + ' <span class="opacity-80">(' + counts[key] + ')</span></button>';
+            };
+            chips += mk('ALL', 'Tất cả');
+            Object.keys(FAQ_CATS).forEach(function(c) { chips += mk(c, c + '. ' + FAQ_CATS[c]); });
+            document.getElementById('faqChips').innerHTML = chips;
+
+            // Danh sách
+            var html = '';
+            var shown = 0;
+            Object.keys(FAQ_CATS).forEach(function(c) {
+                if (faqCat !== 'ALL' && faqCat !== c) return;
+                var rows = '';
+                FAQ_ITEMS.forEach(function(it, i) {
+                    if (it.cat !== c || !matched[i]) return;
+                    shown++;
+                    var open = words.length > 0 || faqAllOpen;
+                    var badge = it.no === 'Bảng' ? 'Bảng' : 'Câu ' + it.no;
+                    var badgeCls = it.no === 'Bảng' ? 'bg-indigo-100 text-indigo-700' : 'bg-amber-100 text-amber-800';
+                    rows += '<div class="faq-item border border-slate-200 rounded-xl bg-white overflow-hidden">' +
+                        '<button type="button" onclick="toggleFaqItem(this)" aria-expanded="' + open + '" class="w-full flex items-start gap-3 text-left px-4 py-3 hover:bg-amber-50/60 transition">' +
+                        '<span class="mt-0.5 flex-shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold ' + badgeCls + '">' + badge + '</span>' +
+                        '<span class="faq-q flex-1 text-sm font-semibold text-slate-800">' + faqEsc(it.q) + '</span>' +
+                        '<i class="fa-solid fa-chevron-down text-[10px] text-slate-400 mt-1.5 transition-transform' + (open ? '" style="transform:rotate(180deg)' : '') + '"></i>' +
+                        '</button>' +
+                        '<div class="faq-a' + (open ? '' : ' hidden') + ' px-4 pb-4 pt-1 text-sm text-slate-700 leading-relaxed border-t border-slate-100 bg-slate-50/50">' + it.a + '</div>' +
+                        '</div>';
+                });
+                if (!rows) return;
+                html += '<div class="pt-2">' +
+                    '<h4 class="text-xs font-extrabold uppercase tracking-wide text-blue-900 flex items-center gap-2"><span class="w-5 h-5 rounded-md bg-blue-900 text-white inline-flex items-center justify-center text-[11px]">' + c + '</span>' + FAQ_CATS[c] + '</h4>' +
+                    (FAQ_INTRO[c] ? '<p class="text-xs text-slate-500 mt-1 mb-2">' + FAQ_INTRO[c] + '</p>' : '<div class="mb-2"></div>') +
+                    '<div class="space-y-2">' + rows + '</div></div>';
+            });
+            if (!shown) {
+                html = '<div class="text-center py-10 text-slate-400 text-sm"><i class="fa-regular fa-face-frown text-2xl mb-2 block"></i>Không tìm thấy câu hỏi phù hợp.<br><span class="text-xs">Thử từ khóa khác hoặc hỏi trực tiếp trong <a href="https://zalo.me/g/ktyidfoez4r4w4s4scjm" target="_blank" rel="noopener noreferrer" class="text-blue-700 font-semibold underline">nhóm Zalo hỗ trợ</a>.</span></div>';
+            }
+            var listEl = document.getElementById('faqList');
+            listEl.innerHTML = html;
+            if (words.length) {
+                listEl.querySelectorAll('.faq-q, .faq-a').forEach(function(el) { faqHighlight(el, words); });
+            }
+
+            document.getElementById('faqCount').textContent = words.length || faqCat !== 'ALL'
+                ? 'Hiển thị ' + shown + ' / ' + FAQ_ITEMS.length + ' mục'
+                : 'Tổng cộng ' + FAQ_ITEMS.length + ' mục (32 câu hỏi và 1 bảng tra cứu)';
+            document.getElementById('faqClearBtn').classList.toggle('hidden', !qRaw);
+        }
+
+        function toggleFaqItem(btn) {
+            var ans = btn.parentNode.querySelector('.faq-a');
+            var open = ans.classList.toggle('hidden') === false;
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            var chev = btn.querySelector('.fa-chevron-down');
+            if (chev) chev.style.transform = open ? 'rotate(180deg)' : '';
+        }
+        function toggleFaqAll() {
+            faqAllOpen = !faqAllOpen;
+            var b = document.getElementById('faqToggleAll');
+            b.querySelector('span').textContent = faqAllOpen ? 'Thu gọn tất cả' : 'Mở tất cả';
+            b.querySelector('i').className = faqAllOpen ? 'fa-solid fa-angles-up' : 'fa-solid fa-angles-down';
+            renderFaq();
+        }
+        function setFaqCat(c) { faqCat = c; renderFaq(); }
+        function onFaqSearch() { renderFaq(); }
+        function clearFaqSearch() {
+            var inp = document.getElementById('faqSearchInput');
+            inp.value = '';
+            renderFaq();
+            inp.focus();
+        }
+        function openFaqModal() {
+            renderFaq();
+            document.getElementById('faqModal').classList.remove('hidden');
+            if (window.innerWidth >= 640) document.getElementById('faqSearchInput').focus();
+        }
+        function closeFaqModal() {
+            document.getElementById('faqModal').classList.add('hidden');
+        }
+        document.getElementById('faqModal')?.addEventListener('click', function(e) {
+            if (e.target === this) closeFaqModal();
         });
     </script>
 </body>
