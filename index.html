@@ -72,7 +72,7 @@
     <header class="bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white shadow-lg relative border-b-4 border-yellow-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-4 md:flex-1 min-w-0">
                     <div class="w-13 h-13 p-2.5 bg-white/10 rounded-2xl backdrop-blur-md border border-white/20 shadow-inner flex items-center justify-center text-yellow-400 text-2xl flex-shrink-0">
                         <i class="fa-solid fa-landmark-flag"></i>
                     </div>
@@ -93,31 +93,68 @@
                     </div>
                 </div>
 
-                <div class="flex flex-wrap items-center gap-2 self-start md:self-auto no-print">
-                    <button onclick="openLinkNopModal()" class="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="Link nộp bcthsdld trực tuyến">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        <span>Link nộp bcthsdld trực tuyến</span>
-                    </button>
-                    <button onclick="openMauPliModal()" class="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="Mẫu báo cáo sử dụng lao động 01/PLI">
+                <div class="flex flex-wrap items-center gap-2 self-start md:self-auto md:ml-auto md:max-w-[60%] lg:max-w-none lg:w-[960px] lg:flex-none no-print">
+                    <div class="relative" id="laoDongWrap">
+                        <button type="button" onclick="toggleLaoDongMenu(event)" id="laoDongBtn" class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg ring-1 ring-white/30 transition duration-200 active:scale-95" title="Báo cáo tình hình sử dụng lao động" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-folder-open text-yellow-300"></i>
+                            <span>1. Báo cáo tình hình sử dụng lao động</span>
+                            <i class="fa-solid fa-chevron-down text-[10px] transition-transform" id="laoDongChevron"></i>
+                        </button>
+                        <div id="laoDongMenu" class="hidden absolute left-0 mt-2 w-80 max-w-[90vw] bg-white text-slate-800 rounded-xl shadow-2xl border border-slate-200 overflow-hidden z-40">
+                            <button type="button" onclick="closeLaoDongMenu(); openLinkNopModal()" class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-teal-50 transition text-left" title="1. Nộp báo cáo bằng hình thức online trực tuyến">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-teal-600 text-base w-5 text-center"></i>
+                                <span>1. Nộp báo cáo bằng hình thức online trực tuyến</span>
+                            </button>
+                            <button type="button" onclick="closeLaoDongMenu(); openBanCungModal()" class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-blue-50 transition border-t border-slate-100 text-left" title="2. Nộp báo cáo bằng bản cứng về Sở Nội vụ">
+                                <i class="fa-solid fa-file-signature text-blue-600 text-base w-5 text-center"></i>
+                                <span>2. Nộp báo cáo bằng bản cứng về Sở Nội vụ</span>
+                            </button>
+                            <button type="button" onclick="closeLaoDongMenu(); openMauPliModal()" class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-violet-50 transition border-t border-slate-100 text-left" title="Tải mẫu báo cáo sử dụng lao động 01/PLI (Tại đây)">
+                                <i class="fa-solid fa-download text-violet-600 text-base w-5 text-center"></i>
+                                <span>Tải mẫu báo cáo sử dụng lao động 01/PLI (Tại đây)</span>
+                            </button>
+                            <button type="button" onclick="closeLaoDongMenu(); openCongVanModal()" class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-emerald-50 transition border-t border-slate-100 text-left" title="Công Văn Các Tỉnh">
+                                <i class="fa-solid fa-file-lines text-emerald-600 text-base w-5 text-center"></i>
+                                <span>Công Văn Các Tỉnh</span>
+                            </button>
+                            <button type="button" onclick="closeLaoDongMenu(); openFaqModal()" class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-amber-50 transition border-t border-slate-100 text-left" title="Hỏi đáp báo cáo tình hình lao động 2026">
+                                <i class="fa-solid fa-circle-question text-amber-500 text-base w-5 text-center"></i>
+                                <span>Hỏi đáp báo cáo tình hình lao động 2026</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" onclick="openBaoCaoModal(1)" class="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="BÁO CÁO THÔNG BÁO VỀ TÌNH HÌNH BIẾN ĐỘNG LAO ĐỘNG">
                         <i class="fa-solid fa-folder-open"></i>
-                        <span>Mẫu báo cáo sử dụng lao động 01/PLI</span>
+                        <span>2. Báo cáo biến động lao động</span>
+                    </button>
+                    <button type="button" onclick="openBaoCaoModal(2)" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="BÁO CÁO CÔNG TÁC AN TOÀN VỆ SINH LAO ĐỘNG">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>3. Báo cáo an toàn vệ sinh lao động</span>
+                    </button>
+                    <button type="button" onclick="openBaoCaoModal(3)" class="inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="BÁO CÁO TỔNG HỢP TÌNH HÌNH TAI NẠN LAO ĐỘNG">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>4. Báo cáo tai nạn lao động</span>
+                    </button>
+                    <button type="button" onclick="openBaoCaoModal(4)" class="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="BÁO CÁO Y TẾ LAO ĐỘNG CỦA CƠ SỞ LAO ĐỘNG">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>5. Báo cáo y tế lao động</span>
+                    </button>
+                    <button type="button" onclick="openBaoCaoModal(5)" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="BÁO CÁO TÌNH HÌNH HOẠT ĐỘNG CHO THUÊ LẠI LAO ĐỘNG">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>6. Báo cáo cho thuê lại lao động</span>
+                    </button>
+                    <button type="button" onclick="openBaoCaoModal(6)" class="inline-flex items-center gap-2 bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="BÁO CÁO TÌNH HÌNH THAM GIA BẢO HIỂM THẤT NGHIỆP NĂM 2026">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>7. Báo cáo bảo hiểm thất nghiệp 2026</span>
                     </button>
                     <button onclick="openMauBieuModal()" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="Tải mẫu biểu các báo cáo">
                         <i class="fa-solid fa-file-excel"></i>
                         <span>Tải mẫu biểu các báo cáo</span>
                     </button>
-                    <button onclick="openCongVanModal()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="Công Văn Các Tỉnh">
-                        <i class="fa-solid fa-file-lines"></i>
-                        <span>Công Văn Các Tỉnh</span>
-                    </button>
                     <a href="https://zalo.me/g/1eahrfloxz66ohutpvlm" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="Tham gia Nhóm Zalo">
                         <i class="fa-solid fa-comments"></i>
                         <span>Tham gia nhóm Zalo</span>
                     </a>
-                    <button type="button" onclick="openFaqModal()" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="Hỏi đáp báo cáo tình hình lao động 2026">
-                        <i class="fa-solid fa-circle-question"></i>
-                        <span>Hỏi đáp báo cáo tình hình lao động 2026</span>
-                    </button>
                     <div class="relative" id="sanPhamWrap">
                         <button type="button" onclick="toggleSanPhamMenu(event)" id="sanPhamBtn" class="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-600 hover:to-rose-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg ring-1 ring-white/30 transition duration-200 active:scale-95" title="Sản phẩm dịch vụ" aria-haspopup="true" aria-expanded="false">
                             <i class="fa-solid fa-bag-shopping text-white"></i>
@@ -228,6 +265,89 @@
                                 <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>Nộp online trực tuyến báo cáo tại đây
                             </a></li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Nộp báo cáo bằng bản cứng về Sở Nội vụ -->
+    <div id="banCungModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4" onclick="if(event.target===this) closeBanCungModal()">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200 my-8">
+            <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-950 px-6 py-4 flex items-center justify-between text-white border-b-2 border-yellow-500">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-yellow-300 flex items-center justify-center text-xl flex-shrink-0 border border-yellow-400/30">
+                        <i class="fa-solid fa-file-signature"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base sm:text-lg">Nộp báo cáo bằng bản cứng về Sở Nội vụ</h3>
+                        <p class="text-xs text-amber-300 font-semibold flex items-center gap-1 mt-0.5">
+                            <i class="fa-regular fa-clock"></i> Hạn nộp trước ngày 05/12/2026
+                        </p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeBanCungModal()" class="text-slate-300 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 max-h-[75vh] overflow-y-auto text-sm text-slate-700">
+                <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                    <h4 class="font-bold text-blue-900 text-base flex items-center gap-2 mb-3">
+                        <span class="w-7 h-7 rounded-lg bg-blue-600 text-white text-xs flex items-center justify-center">2</span>
+                        Nộp trực tiếp (bản giấy) về Sở Nội vụ
+                    </h4>
+                    <ul class="space-y-2.5 leading-relaxed">
+                        <li class="flex gap-2"><i class="fa-solid fa-circle-dot text-blue-500 mt-1 text-xs"></i>
+                            <span><strong>Áp dụng:</strong> Khi người sử dụng lao động không thể báo cáo thông qua link của các Sở Nội vụ hoặc Mail không tiếp nhận.</span></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-circle-dot text-blue-500 mt-1 text-xs"></i>
+                            <span><strong>Thành phần:</strong> Gửi bản giấy theo Mẫu số 01/PLI Phụ lục I ban hành kèm theo Nghị định 145/2020/NĐ-CP.</span></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-circle-dot text-blue-500 mt-1 text-xs"></i>
+                            <div><strong>Nơi nhận:</strong>
+                                <ul class="mt-1.5 space-y-1.5 pl-1">
+                                    <li class="flex gap-2"><i class="fa-solid fa-angle-right text-slate-400 mt-1 text-xs"></i><span>Gửi đến Sở Nội vụ các Tỉnh/Thành Phố.</span></li>
+                                    <li class="flex gap-2"><i class="fa-solid fa-angle-right text-slate-400 mt-1 text-xs"></i><span>Trường hợp lao động làm việc trong khu công nghiệp, khu kinh tế: Phải nộp đến Sở Nội vụ và Ban quản lý khu công nghiệp, khu kinh tế.</span></li>
+                                </ul>
+                            </div></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-circle-dot text-blue-500 mt-1 text-xs"></i>
+                            <span>Tải mẫu báo cáo tình hình sử dụng lao động 01/PLI
+                                <a href="javascript:void(0)" onclick="closeBanCungModal(); openMauPliModal()" class="font-semibold text-blue-700 hover:text-blue-900 underline underline-offset-2 cursor-pointer">(tại đây)</a>
+                            </span></li>
+                        <li class="flex gap-2"><i class="fa-solid fa-circle-dot text-blue-500 mt-1 text-xs"></i>
+                            <span>Tra cứu thông tin địa chỉ, email, số điện thoại của Sở Nội Vụ
+                                <a href="javascript:void(0)" onclick="goToTraCuuSoNoiVu()" class="font-semibold text-blue-700 hover:text-blue-900 underline underline-offset-2 cursor-pointer">(Tại đây)</a>
+                            </span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal chung: thư mục từng loại báo cáo -->
+    <div id="baoCaoModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4" onclick="if(event.target===this) closeBaoCaoModal()">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full overflow-hidden border border-slate-200 my-8">
+            <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-950 px-6 py-4 flex items-center justify-between text-white border-b-2 border-yellow-500">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-yellow-300 flex items-center justify-center text-xl flex-shrink-0 border border-yellow-400/30">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    <h3 id="baoCaoModalTitle" class="font-bold text-sm sm:text-base"></h3>
+                </div>
+                <button type="button" onclick="closeBaoCaoModal()" class="text-slate-300 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition flex-shrink-0">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="p-5 space-y-3 max-h-[70vh] overflow-y-auto">
+                <div id="baoCaoInfo" class="border border-slate-200 bg-slate-50 rounded-xl p-4"></div>
+                <div class="border border-slate-200 hover:border-emerald-400 bg-white rounded-xl p-3 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center text-lg flex-shrink-0"><i class="fa-solid fa-file-excel"></i></span>
+                        <div class="min-w-0">
+                            <div class="font-bold text-slate-800 text-sm">Tải mẫu báo cáo</div>
+                            <div class="text-[11px] text-slate-500">Tệp Excel (.xlsx) - mở bằng Microsoft Excel, WPS hoặc Google Sheets</div>
+                        </div>
+                    </div>
+                    <button type="button" onclick="downloadMauBieu(baoCaoCurrent)" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold shadow-2xs transition flex items-center gap-1.5 active:scale-95 self-end sm:self-auto">
+                        <i class="fa-solid fa-download"></i> <span>Tải về</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -709,6 +829,10 @@
             <!-- Footer Modal -->
             <div class="bg-slate-50 px-6 py-3 border-t border-slate-200 flex flex-wrap justify-between items-center gap-2">
                 <span class="text-xs text-slate-500 font-medium">Đức Tùng CKS - HĐĐT: <strong>0904 594 883</strong></span>
+                <button type="button" onclick="closeLinkNopModal(); openMauPliModal()" class="px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-xl text-xs font-bold transition shadow flex items-center gap-1.5 active:scale-95" title="Tải mẫu báo cáo">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Tải mẫu báo cáo</span>
+                </button>
                 <button onclick="closeLinkNopModal()" class="px-5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition">
                     Đóng
                 </button>
@@ -841,7 +965,7 @@
         </div>
 
         <!-- Notification Toast Message Container -->
-        <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div id="toast" class="fixed bottom-20 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
             <div class="bg-slate-900/90 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 text-sm backdrop-blur-md border border-slate-700">
                 <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
                 <span id="toastMsg">Đã sao chép vào bộ nhớ tạm!</span>
@@ -1403,11 +1527,6 @@
                                     <span>Copy</span>
                                 </button>
                             ` : ''}
-                            <button onclick="promptEditLink('${escapeAttr(name)}')" 
-                                class="px-2.5 py-1.5 bg-white hover:bg-slate-100 text-slate-600 border border-slate-200 rounded-lg text-xs font-medium transition flex items-center gap-1" title="Đổi hoặc thêm link">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <span>${hasLink ? 'Đổi link' : 'Thêm link'}</span>
-                            </button>
                             ${hasLink ? `
                                 <a href="${link}" target="_blank" rel="noopener noreferrer" 
                                     class="px-3.5 py-1.5 bg-teal-600 hover:bg-teal-700 text-white rounded-lg text-xs font-semibold shadow-2xs transition flex items-center gap-1.5 active:scale-95" title="Mở cổng nộp báo cáo">
@@ -1959,8 +2078,29 @@
             "Chứng từ khấu trừ thuế TNCN": "",
             "PM kế toán": ""
         };
+        function toggleLaoDongMenu(e) {
+            if (e) e.stopPropagation();
+            closeSanPhamMenu();
+            const m = document.getElementById('laoDongMenu');
+            const open = m.classList.toggle('hidden') === false;
+            document.getElementById('laoDongBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
+            document.getElementById('laoDongChevron').style.transform = open ? 'rotate(180deg)' : '';
+        }
+        function closeLaoDongMenu() {
+            const m = document.getElementById('laoDongMenu');
+            if (!m) return;
+            m.classList.add('hidden');
+            document.getElementById('laoDongBtn').setAttribute('aria-expanded', 'false');
+            document.getElementById('laoDongChevron').style.transform = '';
+        }
+        document.addEventListener('click', function(e) {
+            const w = document.getElementById('laoDongWrap');
+            if (w && !w.contains(e.target)) closeLaoDongMenu();
+        });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLaoDongMenu(); });
         function toggleSanPhamMenu(e) {
             if (e) e.stopPropagation();
+            closeLaoDongMenu();
             const m = document.getElementById('sanPhamMenu');
             const open = m.classList.toggle('hidden') === false;
             document.getElementById('sanPhamBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -1984,6 +2124,40 @@
             if (w && !w.contains(e.target)) closeSanPhamMenu();
         });
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSanPhamMenu(); });
+
+        function goToTraCuuSoNoiVu() {
+            closeBanCungModal();
+            const inp = document.getElementById('searchInput');
+            if (!inp) return;
+            inp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(function() { inp.focus(); }, 400);
+        }
+        const BAO_CAO_TITLES = {1: "BÁO CÁO THÔNG BÁO VỀ TÌNH HÌNH BIẾN ĐỘNG LAO ĐỘNG", 2: "BÁO CÁO CÔNG TÁC AN TOÀN VỆ SINH LAO ĐỘNG", 3: "BÁO CÁO TỔNG HỢP TÌNH HÌNH TAI NẠN LAO ĐỘNG", 4: "BÁO CÁO Y TẾ LAO ĐỘNG CỦA CƠ SỞ LAO ĐỘNG", 5: "BÁO CÁO TÌNH HÌNH HOẠT ĐỘNG CHO THUÊ LẠI LAO ĐỘNG", 6: "BÁO CÁO TÌNH HÌNH THAM GIA BẢO HIỂM THẤT NGHIỆP NĂM 2026"};
+        let baoCaoCurrent = 1;
+        function openBaoCaoModal(i) {
+            baoCaoCurrent = i;
+            document.getElementById('baoCaoModalTitle').textContent = BAO_CAO_TITLES[i];
+            // Lấy thông tin (đối tượng, thời hạn, CCPL, cơ quan tiếp nhận) từ mục "Hạn nộp các báo cáo" để luôn đồng bộ
+            const info = document.getElementById('baoCaoInfo');
+            info.innerHTML = '';
+            const cards = document.querySelectorAll('#hanNopModal .space-y-3 > div');
+            const src = cards[i] ? cards[i].querySelector('.min-w-0.flex-1') : null;
+            if (src) info.appendChild(src.cloneNode(true));
+            info.classList.toggle('hidden', !src);
+            document.getElementById('baoCaoModal').classList.remove('hidden');
+        }
+        function closeBaoCaoModal() {
+            document.getElementById('baoCaoModal').classList.add('hidden');
+        }
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeBaoCaoModal(); });
+
+        function openBanCungModal() {
+            document.getElementById('banCungModal').classList.remove('hidden');
+        }
+        function closeBanCungModal() {
+            document.getElementById('banCungModal').classList.add('hidden');
+        }
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeBanCungModal(); });
 
         function openHuongDanNopModal() {
             document.getElementById('huongDanNopModal').classList.remove('hidden');
@@ -2317,6 +2491,25 @@
         document.getElementById('faqModal')?.addEventListener('click', function(e) {
             if (e.target === this) closeFaqModal();
         });
+    </script>
+    <!-- Nút nổi: Tham gia Zalo hỗ trợ (có nút X để tắt) -->
+    <div id="zaloFloat" class="no-print fixed bottom-4 right-4 z-40 flex items-center bg-blue-600 text-white rounded-full shadow-xl ring-2 ring-white/70 overflow-hidden">
+        <a href="https://zalo.me/g/1eahrfloxz66ohutpvlm" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 pl-4 pr-3 py-2.5 text-sm font-semibold hover:bg-blue-700 transition" title="Tham gia nhóm Zalo hỗ trợ">
+            <i class="fa-solid fa-comments text-base"></i>
+            <span>Tham gia Zalo hỗ trợ</span>
+        </a>
+        <button type="button" onclick="closeZaloFloat()" class="px-3 py-2.5 self-stretch hover:bg-blue-800 border-l border-white/30 transition" title="Tắt" aria-label="Tắt nút Zalo hỗ trợ">
+            <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+    </div>
+    <script>
+        (function() {
+            try { if (sessionStorage.getItem('zaloFloatClosed') === '1') document.getElementById('zaloFloat').classList.add('hidden'); } catch (e) {}
+        })();
+        function closeZaloFloat() {
+            document.getElementById('zaloFloat').classList.add('hidden');
+            try { sessionStorage.setItem('zaloFloatClosed', '1'); } catch (e) {}
+        }
     </script>
 </body>
 </html>
