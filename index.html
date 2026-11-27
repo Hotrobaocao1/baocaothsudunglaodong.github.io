@@ -147,6 +147,10 @@
                         <i class="fa-solid fa-folder-open"></i>
                         <span>7. Báo cáo bảo hiểm thất nghiệp 2026</span>
                     </button>
+                    <button type="button" onclick="openThienTaiModal()" class="inline-flex items-center gap-2 bg-lime-600 hover:bg-lime-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="Nộp Quỹ Phòng Chống Thiên Tai">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>8. Nộp Quỹ Phòng Chống Thiên Tai</span>
+                    </button>
                     <button onclick="openMauBieuModal()" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow transition duration-200 active:scale-95" title="Tải mẫu biểu các báo cáo">
                         <i class="fa-solid fa-file-excel"></i>
                         <span>Tải mẫu biểu các báo cáo</span>
@@ -538,6 +542,51 @@
     </div>
 
     <!-- Modal Mẫu báo cáo sử dụng lao động 01/PLI -->
+    <!-- Modal: Nộp Quỹ Phòng Chống Thiên Tai -->
+    <div id="thienTaiModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full overflow-hidden border border-slate-200 transform transition-all my-8">
+            <div class="bg-gradient-to-r from-lime-700 to-green-800 px-6 py-4 flex items-center justify-between text-white border-b-2 border-lime-400">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-xl flex-shrink-0">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base sm:text-lg">Nộp Quỹ Phòng Chống Thiên Tai</h3>
+                        <p class="text-xs text-lime-100 mt-0.5">Mẫu công văn và hướng dẫn theo từng tỉnh, thành phố</p>
+                    </div>
+                </div>
+                <button onclick="closeThienTaiModal()" class="text-lime-100 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="p-3.5 bg-slate-50 border-b border-slate-200">
+                <div class="relative">
+                    <input type="text" id="thienTaiSearchInput" oninput="renderThienTaiList()" placeholder="Tìm nhanh tỉnh thành (VD: Hà Nội, Đà Nẵng...)" class="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-lime-600 focus:ring-2 focus:ring-lime-100 outline-none">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                </div>
+            </div>
+            <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2.5" id="thienTaiProvinceList"></div>
+            <div class="bg-slate-50 px-6 py-3 border-t border-slate-200 flex flex-wrap justify-between items-center gap-2">
+                <span class="text-xs text-slate-500 font-medium">Hỗ trợ CKS - HĐĐT: <strong>0904 594 883</strong></span>
+                <button onclick="closeThienTaiModal()" class="px-5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cửa sổ con: link công văn / hướng dẫn của từng tỉnh -->
+    <div id="thienTaiLinkModal" class="hidden fixed inset-0 z-[60] overflow-y-auto bg-slate-900/70 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-200 my-8">
+            <div class="bg-gradient-to-r from-lime-700 to-green-800 px-5 py-3.5 flex items-center justify-between text-white">
+                <h3 class="font-bold text-sm sm:text-base" id="thienTaiLinkTitle"></h3>
+                <button onclick="closeThienTaiLinkModal()" class="text-lime-100 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="p-4" id="thienTaiLinkBody"></div>
+            <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end">
+                <button onclick="closeThienTaiLinkModal()" class="px-5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition">Đóng</button>
+            </div>
+        </div>
+    </div>
+
     <div id="mauBieuModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full overflow-hidden border border-slate-200 transform transition-all my-8">
             <div class="bg-gradient-to-r from-sky-700 to-blue-800 px-6 py-4 flex items-center justify-between text-white border-b-2 border-sky-400">
@@ -1941,6 +1990,68 @@
         document.getElementById('hanNopModal')?.addEventListener('click', function(e) {
             if (e.target === this) closeHanNopModal();
         });
+
+        // ====== Nộp Quỹ Phòng Chống Thiên Tai ======
+        // Cập nhật link từng tỉnh tại đây (cv = tải mẫu công văn, hd = hướng dẫn). "" = chưa có link.
+        const THIEN_TAI_LINKS = {
+            "Hà Nội": {
+                cv: "https://drive.google.com/drive/folders/1sllZu3NQJpe6ltg5nkM1SjTzlsgff8Fl",
+                hd: "https://docs.google.com/document/d/1aO2C0s77i3KO1GvtiNmT7htjP4sgF-mVrj91XRgIWV4/edit?tab=t.2za5cuo6liv5"
+            }
+        };
+        function openThienTaiModal() {
+            document.getElementById('thienTaiSearchInput').value = '';
+            renderThienTaiList();
+            document.getElementById('thienTaiModal').classList.remove('hidden');
+        }
+        function closeThienTaiModal() {
+            document.getElementById('thienTaiModal').classList.add('hidden');
+        }
+        function renderThienTaiList() {
+            const q = (document.getElementById('thienTaiSearchInput').value || '').trim().toLowerCase();
+            const box = document.getElementById('thienTaiProvinceList');
+            const rows = RAW_DATA.map((d, i) => ({ d, i })).filter(x => !q || x.d.province.toLowerCase().includes(q));
+            if (!rows.length) {
+                box.innerHTML = '<div class="text-center text-sm text-slate-500 py-6">Không tìm thấy tỉnh thành phù hợp.</div>';
+                return;
+            }
+            box.innerHTML = rows.map(x => `
+                <div class="border border-slate-200 hover:border-lime-400 bg-white rounded-xl p-3 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="w-9 h-9 rounded-lg bg-lime-100 text-lime-700 border border-lime-200 flex items-center justify-center text-sm font-bold flex-shrink-0">${x.d.stt}</span>
+                        <span class="font-bold text-slate-800 text-sm">${x.d.province}</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" onclick="openThienTaiLink(${x.i}, 'cv')" class="px-3.5 py-1.5 bg-lime-600 hover:bg-lime-700 text-white rounded-lg text-xs font-semibold transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-download"></i><span>Tải mẫu công văn</span></button>
+                        <button type="button" onclick="openThienTaiLink(${x.i}, 'hd')" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-info"></i><span>Hướng dẫn</span></button>
+                    </div>
+                </div>`).join('');
+        }
+        function openThienTaiLink(i, type) {
+            const p = RAW_DATA[i].province;
+            const link = (THIEN_TAI_LINKS[p] || {})[type] || '';
+            const label = type === 'cv' ? 'Tải mẫu công văn' : 'Hướng dẫn';
+            document.getElementById('thienTaiLinkTitle').textContent = label + ' - ' + p;
+            const body = document.getElementById('thienTaiLinkBody');
+            if (link) {
+                body.innerHTML = `
+                    <div class="border border-sky-200 bg-sky-50/50 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="min-w-0">
+                            <div class="font-bold text-slate-800 text-sm">${label}:</div>
+                            <a href="${link}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-600 hover:underline break-all">${link}</a>
+                        </div>
+                        <a href="${link}" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 flex-shrink-0"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Xem ngay</span></a>
+                    </div>`;
+            } else {
+                body.innerHTML = '<div class="text-center text-sm text-slate-500 py-4">Tỉnh này chưa có link, sẽ được cập nhật sau.</div>';
+            }
+            document.getElementById('thienTaiLinkModal').classList.remove('hidden');
+        }
+        function closeThienTaiLinkModal() {
+            document.getElementById('thienTaiLinkModal').classList.add('hidden');
+        }
+        document.getElementById('thienTaiModal')?.addEventListener('click', function(e) { if (e.target === this) closeThienTaiModal(); });
+        document.getElementById('thienTaiLinkModal')?.addEventListener('click', function(e) { if (e.target === this) closeThienTaiLinkModal(); });
 
         function openMauBieuModal() {
             document.getElementById('mauBieuModal').classList.remove('hidden');
